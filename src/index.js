@@ -18,5 +18,5 @@ class Container extends React.Component {
   }
 }
 
-ReactDOM.render(<Game />, document.getElementById('root'));
+ReactDOM.render(<Container />, document.getElementById('root'));
 registerServiceWorker();
