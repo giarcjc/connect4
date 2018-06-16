@@ -1,12 +1,25 @@
-.grid {
-  border: thin solid gray;
-  line-height: 0;
-  margin-bottom: 0.75rem;
+body {
+  margin: 40px;
 }
+
 .cell {
-  border: thin solid gray;
-  display: inline-block;
-  height: 10px;
-  max-height: 15vh;
-  box-sizing: border-box;
+  background-color: rgb(12, 12, 12);
+  color: #fff;
+  border-radius: 50px;
+  padding: 20px;
+  font-size: 150%;
+}
+
+/* .cell:nth-child(even) {
+  background-color: #ccc;
+  color: #000;
+} */
+
+.wrapper {
+  width: 600px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(7, 50px);
+  grid-template-rows: 50px 50px 50px 50px 50px 50px ;
+  grid-auto-flow: column;
 }

@@ -6,15 +6,16 @@ class Game extends Component {
   cellIds = Array.from({ length: 42 }, (_, i) => i);
 
   render() {
-    console.log(this.cellIds);
+
     return (
      <div className="game">
-       <div className="grid">
+       <div className="wrapper">
+
          {this.cellIds.map(id => {
 
            return (
              <div className="cell"
-             style={{ width: '25%'}}></div>
+             >{id}</div>
            )
          })}
        </div>
