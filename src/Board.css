@@ -1,14 +1,19 @@
 body {
   margin: 40px;
-  background-color: #ccc;
+  background-color: #fff;
+}
+
+.board {
+  width: 427px;
+  border: 5px solid blue;
 }
 
 .cell {
   background-color: rgb(12, 12, 12);
-  color: #fff;
+  color: #000;
   border-radius: 50px;
   padding: 20px;
-  font-size: 150%;
+  font-size: 100%;
 }
 
 /* .cell:nth-child(even) {
@@ -17,7 +22,8 @@ body {
 } */
 
 .wrapper {
-  border: 1px solid black;
+  background-color: #ccc;
+  /* border: 1px solid black; */
   width: 410px;
   padding: 2%;
   display: grid;
