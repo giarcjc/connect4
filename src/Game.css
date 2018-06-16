@@ -1,0 +1,12 @@
+.grid {
+  border: thin solid gray;
+  line-height: 0;
+  margin-bottom: 0.75rem;
+}
+.cell {
+  border: thin solid gray;
+  display: inline-block;
+  height: 10px;
+  max-height: 15vh;
+  box-sizing: border-box;
+}
