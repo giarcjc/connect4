@@ -8,14 +8,6 @@ body {
   border: 5px solid blue;
 }
 
-.cell {
-  background-color: rgb(12, 12, 12);
-  color: #000;
-  border-radius: 50px;
-  padding: 20px;
-  font-size: 100%;
-}
-
 /* .cell:nth-child(even) {
   background-color: #ccc;
   color: #000;
