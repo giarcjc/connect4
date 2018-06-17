@@ -8,8 +8,7 @@ const bgColors = {
 };
 
 class Cell extends PureComponent {
-  state = {};
-  cellIds = Array.from({ length: 42 }, (_, i) => i);
+
   status = () => {
     return 'normal';
   };
