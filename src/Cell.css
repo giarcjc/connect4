@@ -5,4 +5,17 @@
   border-radius: 50px;
   padding: 20px;
   font-size: 100%;
+  cursor: pointer;
+}
+
+.black {
+  background-color: #000;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.red {
+  background-color: rgb(250, 7, 7);
+  color: #000;
+  cursor: not-allowed;
 }

@@ -25,18 +25,18 @@ const Cell = (props) => {
       props.onClickAction(props.id);
   };
 
+  const cellClasses = `cell ${cellClassName(props.id)}`;
   return (
     <div
     id={props.id}
-    className="cell"
-    style={{backgroundColor: cellClassName(props.id)}}
+    className={cellClasses}
     onClick={handleClick}
     >
     {props.id}
     </div>
   )
 }
-
+//     style={{backgroundColor: cellClassName(props.id)}}
 
 
 // class Cell extends PureComponent {
