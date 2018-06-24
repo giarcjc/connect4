@@ -12,9 +12,6 @@ class Game extends Component {
     return (
      <div className="game">
         <Board
-
-
-
         />
      </div>
     );
