@@ -4,21 +4,32 @@ import Cell from './Cell';
 
 class Board extends Component {
   state = {
-    player1Cells: [2,5,23,22,21,20],
-    player2Cells: [3,9,15,21],
+    player1Cells: [],
+    player2Cells: [],
   };
 
   cellIds = Array.from({ length: 42 }, (_, i) => i);
 
   onCellClick = cellId => {
-    console.log('onCellClick', cellId);
+    // console.log('onCellClick', cellId);
+    // console.log('this.props.player1Turn: ---> ');
+    // console.log();
 
-    this.setState((previousState) => {
-      return {
-        player1Cells: [...previousState.player1Cells],
-        player2Cells: [...previousState.player2Cells],
-      }
-    })
+    this.props.changeTurns();
+
+    if (this.props.player1Turn) {
+
+      this.setState((prevState) => ({
+        player1Cells: prevState.player1Cells.concat(cellId),
+        player2Cells: prevState.player2Cells,
+      }))
+
+    } else {
+      this.setState((prevState) => ({
+        player1Cells: prevState.player1Cells,
+        player2Cells: prevState.player2Cells.concat(cellId),
+      }))
+    }
 
   };
 

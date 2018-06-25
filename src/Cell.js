@@ -2,12 +2,6 @@ import React from 'react';
 import './Cell.css';
 
 const Cell = (props) => {
-  const bgColors = {
-    normal: 'white',
-    black: 'black',
-    red: 'red',
-  };
-
   const cellClassName = cellId => {
     if (props.selectedPlayer1Cells.indexOf(cellId) > -1) {
       console.log('selectedPlayer1Cell: ', cellId);
