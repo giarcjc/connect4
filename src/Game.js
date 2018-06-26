@@ -11,8 +11,8 @@ class Game extends Component {
   }
 
   changeTurns = () => {
-    console.log('changeTurns this.state.player1Turn');
-    console.log(this.state.player1Turn);
+    this.calculateWinner();
+
     this.setState(prevState =>
       ({
         player1Turn: !prevState.player1Turn,
@@ -22,6 +22,7 @@ class Game extends Component {
   }
 
   calculateWinner = () => {
+    console.log('calculateWinner');
 
 
 
