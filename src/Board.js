@@ -25,9 +25,21 @@ class Board extends Component {
   col7 = this.cellIds.slice(36,41);
 
   onCellClick = cellId => {
+    let endCellId;
+    const moveToBottom = (cellId, colArray) => {
+      console.log('moveToBottom colArray');
+      console.log(colArray);
+      console.log('moveToBottom cellId', cellId);
+      while (cellId < colArray.length -1) {
+        colArray.pop();
+        cellId = colArray.length;
+        endCellId = cellId;
+      }
+
+    }
 
     this.setState(prevState => ({
-      isInCol1: this.col1.indexOf(cellId) > 0 ? prevState.isInCol1.concat(cellId) : prevState.isInCol1,
+      isInCol1: this.col1.indexOf(cellId) > 0 ? moveToBottom(cellId, this.col1) : prevState.isInCol1,
       isInCol2: this.col2.indexOf(cellId) > 0 ? prevState.isInCol2.concat(cellId) : prevState.isInCol2,
       isInCol3: this.col3.indexOf(cellId) > 0 ? prevState.isInCol3.concat(cellId) : prevState.isInCol3,
       isInCol4: this.col4.indexOf(cellId) > 0 ? prevState.isInCol4.concat(cellId) : prevState.isInCol4,
@@ -36,18 +48,25 @@ class Board extends Component {
       isInCol7: this.col7.indexOf(cellId) > 0 ? prevState.isInCol7.concat(cellId) : prevState.isInCol7,
     }));
 
+
+
+
+
+
+
+
     this.props.changeTurns();
 
     if (this.props.player1Turn) {
       this.setState((prevState) => ({
-        player1Cells: prevState.player1Cells.concat(cellId),
+        player1Cells: prevState.player1Cells.concat(endCellId),
         player2Cells: prevState.player2Cells,
       }))
 
     } else {
       this.setState((prevState) => ({
         player1Cells: prevState.player1Cells,
-        player2Cells: prevState.player2Cells.concat(cellId),
+        player2Cells: prevState.player2Cells.concat(endCellId),
       }))
     }
 
