@@ -6,19 +6,39 @@ class Board extends Component {
   state = {
     player1Cells: [],
     player2Cells: [],
+    isInCol1: [],
+    isInCol2: [],
+    isInCol3: [],
+    isInCol4: [],
+    isInCol5: [],
+    isInCol6: [],
+    isInCol7: [],
   };
 
   cellIds = Array.from({ length: 42 }, (_, i) => i);
+  col1 = this.cellIds.slice(0,6);
+  col2 = this.cellIds.slice(7,11);
+  col3 = this.cellIds.slice(12,17);
+  col4 = this.cellIds.slice(18,23);
+  col5 = this.cellIds.slice(24,29);
+  col6 = this.cellIds.slice(30,35);
+  col7 = this.cellIds.slice(36,41);
 
   onCellClick = cellId => {
-    // console.log('onCellClick', cellId);
-    // console.log('this.props.player1Turn: ---> ');
-    // console.log();
+
+    this.setState(prevState => ({
+      isInCol1: this.col1.indexOf(cellId) > 0 ? prevState.isInCol1.concat(cellId) : prevState.isInCol1,
+      isInCol2: this.col2.indexOf(cellId) > 0 ? prevState.isInCol2.concat(cellId) : prevState.isInCol2,
+      isInCol3: this.col3.indexOf(cellId) > 0 ? prevState.isInCol3.concat(cellId) : prevState.isInCol3,
+      isInCol4: this.col4.indexOf(cellId) > 0 ? prevState.isInCol4.concat(cellId) : prevState.isInCol4,
+      isInCol5: this.col5.indexOf(cellId) > 0 ? prevState.isInCol5.concat(cellId) : prevState.isInCol5,
+      isInCol6: this.col6.indexOf(cellId) > 0 ? prevState.isInCol6.concat(cellId) : prevState.isInCol6,
+      isInCol7: this.col7.indexOf(cellId) > 0 ? prevState.isInCol7.concat(cellId) : prevState.isInCol7,
+    }));
 
     this.props.changeTurns();
 
     if (this.props.player1Turn) {
-
       this.setState((prevState) => ({
         player1Cells: prevState.player1Cells.concat(cellId),
         player2Cells: prevState.player2Cells,
@@ -30,6 +50,7 @@ class Board extends Component {
         player2Cells: prevState.player2Cells.concat(cellId),
       }))
     }
+
 
   };
 
@@ -57,3 +78,4 @@ class Board extends Component {
 }
 
 export default Board;
+

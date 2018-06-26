@@ -6,6 +6,7 @@ class Game extends Component {
     super(props);
     this.state = {
       player1Turn: true,
+      message: 'Next Move: Player 1'
     }
   }
 
@@ -14,14 +15,23 @@ class Game extends Component {
     console.log(this.state.player1Turn);
     this.setState(prevState =>
       ({
-        player1Turn: !prevState.player1Turn
+        player1Turn: !prevState.player1Turn,
+        message: this.state.player1Turn ? 'Next Move: Player 2' : 'Next Move: Player 1',
       })
     )
   }
 
+  calculateWinner = () => {
+
+
+
+  }
+
   render() {
     return (
+
      <div className="game">
+        <h2>{this.state.message}</h2>
         <Board
           changeTurns={this.changeTurns}
           player1Turn={this.state.player1Turn}
