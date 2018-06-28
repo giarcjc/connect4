@@ -57,8 +57,6 @@ class Board extends Component {
       }))
     }
 
-
-
     this.props.changeTurns();
   };
 

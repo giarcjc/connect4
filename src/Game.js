@@ -23,9 +23,6 @@ class Game extends Component {
 
   calculateWinner = () => {
     console.log('calculateWinner');
-
-
-
   }
 
   render() {
