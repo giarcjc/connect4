@@ -1,41 +1,45 @@
 import React, { Component } from 'react';
 import Board from './Board';
+import lib from './lib';
 
 class Game extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      player1Turn: true,
-      message: 'Next Move: Player 1'
+      board: new lib.Board()
     }
   }
 
-  changeTurns = () => {
-    this.calculateWinner();
+  handleGamedropGamePiece(columnIndex, piece) {
+    if (!this.state.board.isActive) {
+      return;
+    }
 
-    this.setState(prevState =>
-      ({
-        player1Turn: !prevState.player1Turn,
-        message: this.state.player1Turn ? 'Next Move: Player 2' : 'Next Move: Player 1',
-      })
-    )
-  }
+    this.state.board.dropGamePiece(columnIndex, piece);
 
-  calculateWinner = () => {
-    console.log('calculateWinner');
+    let winnerMsg = this.state.board.winner ? `${this.state.board.winner.toUpperCase()} Wins!` : null;
+    let tieGameMsg =  this.state.board.tieGame ? 'Tie Game, Nobody Wins!' : null;
+    let gameStatus = winnerMsg ? winnerMsg : tieGameMsg
+    this.message = gameStatus ? gameStatus : '';
+
+
+    this.setState({
+      board: this.state.board
+    });
   }
 
   render() {
     return (
-
-     <div className="game">
-        <h2>{this.state.message}</h2>
-        <Board
-          changeTurns={this.changeTurns}
-          player1Turn={this.state.player1Turn}
-        />
-     </div>
-    );
+      <div>
+        <h2>{this.message}</h2>
+        <div className='wrapper'>
+          <Board className='board'
+            board={this.state.board}
+            dropGamePiece={this.handleGamedropGamePiece.bind(this)}
+          />
+        </div>
+      </div>
+    )
   }
 }
 
