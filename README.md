@@ -3,5 +3,5 @@
 
 My first attempt at building a React game without a tutorial.  Uses CSS-Grid for layout of the board.
 
-# Still very much WIP.
-Actual gameplay logic is unfinished, and much refactoring needs to happen.
+# Still WIP.
+Actual gameplay logic is a bit buggy. Needs a better way to reset game, more styling, and tests!
