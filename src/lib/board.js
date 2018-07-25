@@ -6,7 +6,8 @@ export default class Board {
     this.grid = Array(7).fill().map(() => Array(6).fill(null));
     this.winner = null;
     this.tieGame = null;
-    // how many pieces have been inserted?
+
+    // how many pieces have been inserted
     this.inserts = 0;
 
     this.nextPlayer = refreshPlayer(this.inserts);
@@ -21,7 +22,7 @@ export default class Board {
     let column = this.grid[columnIndex];
     let cellIndex = -1;
 
-    // loop through column looking for zeros to determine next available cell
+    // loop through column looking for nulls to determine next available cell
     column.forEach((columnPiece, i) => {
       if (columnPiece === null) {
         cellIndex = i;
@@ -36,6 +37,7 @@ export default class Board {
       this.inserts++;
 
       if (this.calculateWinner()) {
+        console.log('we got winner');
         this.isActive = false;
         this.winner = this.nextPlayer;
       } else if (this.inserts >= 42) {
