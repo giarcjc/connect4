@@ -49,6 +49,7 @@ const checkColumns = grid => {
 /**
  * send grid rows to checkElements function
  * @param {*} grid - the game board
+ * @returns {boolean} match found
  */
 const checkRows = grid => {
   for (let i = 0; i < grid.length; i++) {
@@ -61,15 +62,137 @@ const checkRows = grid => {
   }
 }
 
+function sliceDiagonally(grid, col, row, maxLength,leftToRight) {
+  let diagonalArray = [];
+  while (diagonalArray.length < maxLength) {
+    diagonalArray.push(grid[col][row]);
+    if (leftToRight) {
+      col++
+    } else {
+      col--;
+    }
+    row++;
+  }
+  return diagonalArray;
+}
+const topLeftToBottomRight = grid => {
+  const arr1 = checkElements(sliceDiagonally(grid,0,2,4,true));
+  const arr2 = checkElements(sliceDiagonally(grid,0,1,5,true));
+  const arr3 = checkElements(sliceDiagonally(grid,0,0,6,true));
+  const arr4 = checkElements(sliceDiagonally(grid,1,0,6,true));
+  const arr5 = checkElements(sliceDiagonally(grid,2,0,5,true));
+  const arr6 = checkElements(sliceDiagonally(grid,3,0,4,true));
+  return arr1 || arr2 || arr3 || arr4 || arr5 || arr6;
+}
+
+const topRightToBottomLeft = grid => {
+  const arr1 = checkElements(sliceDiagonally(grid,6,2,4));
+  const arr2 = checkElements(sliceDiagonally(grid,6,1,5));
+  const arr3 = checkElements(sliceDiagonally(grid,6,0,6));
+  const arr4 = checkElements(sliceDiagonally(grid,5,0,6));
+  const arr5 = checkElements(sliceDiagonally(grid,4,0,5));
+  const arr6 = checkElements(sliceDiagonally(grid,3,0,4));
+  return arr1 || arr2 || arr3 || arr4 || arr5 || arr6;
+}
+
+// going from top right to left right:
+/*  array1 will be from col 7 row 4 down to col 4 row 6 center bottom
+    grid[6][2]
+    grid[5][3]
+    grid[4][4]
+    grid[3][5]
+
+    array2 will be from col 7 row 5 down to col 5 row 6 bottom
+    grid[6][1]
+    grid[5][2]
+    grid[4][3]
+    grid[3][4]
+    grid[2][5]
+
+    array3 will be from col 7 row 6 (top) down to col 6 row 6 bottom
+    grid[6][0]
+    grid[5][1]
+    grid[4][2]
+    grid[3][3]
+    grid[2][4]
+    grid[1][5]
+
+    array4 will be from top spot of col 2 down to col 7 row 6 bottom corner
+    grid[5][0]
+    grid[4][1]
+    grid[3][2]
+    grid[2][3]
+    grid[1][4]
+    grid[0][5]
+
+    array5 will be from top spot of col 3 down to col 7 row 5
+    grid[4][0]
+    grid[3][1]
+    grid[2][2]
+    grid[1][3]
+    grid[0][4]
+
+    array6 will be from top spot of col 4 down to col 7 row 4
+    grid[3][0]
+    grid[2][1]
+    grid[1][2]
+    grid[0][3]
+
+// need to slice diagonally to get arrays and send to checkElements
+
+// going from top left to bottom right:
+/*  array1 will be from col 1 row 4 down to col 4 row 6 center bottom
+    grid[0][2]
+    grid[1][3]
+    grid[2][4]
+    grid[3][5]
+
+    array2 will be from col 1 row 5 down to col 5 row 6 bottom
+    grid[0][1]
+    grid[1][2]
+    grid[2][3]
+    grid[3][4]
+    grid[4][5]
+
+    array3 will be from col 1 row 6 (top) down to col 6 row 6 bottom
+    grid[0][0]
+    grid[1][1]
+    grid[2][2]
+    grid[3][3]
+    grid[4][4]
+    grid[5][5]
+
+    array4 will be from top spot of col 2 down to col 7 row 6 bottom corner
+    grid[1][0]
+    grid[2][1]
+    grid[3][2]
+    grid[4][3]
+    grid[5][4]
+    grid[6][5]
+
+    array5 will be from top spot of col 3 down to col 7 row 5
+    grid[2][0]
+    grid[3][1]
+    grid[4][2]
+    grid[5][3]
+    grid[6][4]
+
+    array6 will be from top spot of col 4 down to col 7 row 4
+    grid[3][0]
+    grid[4][1]
+    grid[5][2]
+    grid[6][3]
+
+
+
+*/
+
+
 
 
 function winCheck(grid) {
-  console.table(grid);
-  const verticalMatch = checkColumns(grid);
-  console.log('verticalMatch: ', verticalMatch);
-  const horizontalMatch = checkRows(grid);
-  console.log('horizontalMatch: ', horizontalMatch);
-  return verticalMatch || horizontalMatch;
+  return checkColumns(grid) || checkRows(grid) ||
+         topLeftToBottomRight(grid) || topRightToBottomLeft(grid);
 }
 
 export default winCheck;
